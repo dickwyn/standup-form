@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import ClipboardJS from 'clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { name } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   standupForm: FormGroup;
   date: String;
   clipboardjs: any;
+  appName: string = name;
 
   constructor(private fb: FormBuilder, private snackbar: MatSnackBar) {}
 

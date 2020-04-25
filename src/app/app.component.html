@@ -1,3 +1,6 @@
+<mat-toolbar>
+  {{ appName }}
+</mat-toolbar>
 <div class="wrapper">
   <form [formGroup]="standupForm">
     <h2>
@@ -64,24 +67,31 @@
       </mat-form-field>
     </div>
   </form>
+  <section id="preview">
+    <h2>Preview</h2>
 
-  <div class="preview copy-to-clipboard" id="foo" data-clipboard-target="#foo">
-    <p class="title">Standup for {{ date }}</p>
-    <p>Previous day</p>
-    <ul>
-      <li *ngFor="let checklistItem of previousChecklist.value">
-        {{ checklistItem }}
-      </li>
-    </ul>
-    <p>Today</p>
-    <ul>
-      <li *ngFor="let checklistItem of currentChecklist.value">
-        {{ checklistItem }}
-      </li>
-    </ul>
-    <p>Blockers</p>
-    <ul>
-      <li>{{ blockers.value }}</li>
-    </ul>
-  </div>
+    <div
+      class="preview copy-to-clipboard"
+      id="foo"
+      data-clipboard-target="#foo"
+    >
+      <p class="title">Standup for {{ date }}</p>
+      <p>Previous day</p>
+      <ul>
+        <li *ngFor="let checklistItem of previousChecklist.value">
+          {{ checklistItem }}
+        </li>
+      </ul>
+      <p>Today</p>
+      <ul>
+        <li *ngFor="let checklistItem of currentChecklist.value">
+          {{ checklistItem }}
+        </li>
+      </ul>
+      <p>Blockers</p>
+      <ul>
+        <li>{{ blockers.value }}</li>
+      </ul>
+    </div>
+  </section>
 </div>
