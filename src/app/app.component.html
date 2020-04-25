@@ -55,15 +55,26 @@
       </mat-form-field>
     </div>
 
-    <h3>Blockers</h3>
-    <div class="row-item">
+    <h3>
+      Blockers
+      <mat-icon color="accent" (click)="addToChecklist('blockers')"
+        >add_box</mat-icon
+      >
+    </h3>
+    <div class="row-item" *ngFor="let control of blockers.controls; index as i">
       <mat-form-field appearance="outline">
-        <mat-label>Task</mat-label>
+        <mat-label>Blocker</mat-label>
         <input
           matInput
-          placeholder="Do you have any blockers"
-          formControlName="blockers"
+          placeholder="Need to meet with Bob"
+          [formControl]="control"
         />
+        <mat-icon
+          matSuffix
+          color="warn"
+          (click)="removeFromChecklist('blockers', i)"
+          >delete</mat-icon
+        >
       </mat-form-field>
     </div>
   </form>

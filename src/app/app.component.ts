@@ -8,7 +8,6 @@ import { name } from '../../package.json';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  @Input() appearance: 'outline';
   standupForm: FormGroup;
   appName: string = name;
 
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit {
     this.standupForm = this.fb.group({
       previousChecklist: this.fb.array(['']),
       currentChecklist: this.fb.array(['']),
-      blockers: '',
+      blockers: this.fb.array(['']),
     });
   }
 
@@ -35,6 +34,8 @@ export class AppComponent implements OnInit {
   }
 
   addToChecklist(controlName: string) {
+    console.log('DIRTY ', this.standupForm.controls.blockers.dirty);
+    console.log('PRIST ', this.standupForm.controls.blockers.pristine);
     const formControl = this.standupForm.get(controlName) as FormArray;
     formControl.push(new FormControl(''));
   }

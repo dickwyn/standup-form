@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 import ClipboardJS from 'clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class PreviewComponent implements OnInit {
   @Input() previousChecklist: FormArray;
   @Input() currentChecklist: FormArray;
-  @Input() blockers: FormGroup;
+  @Input() blockers: FormArray;
   date: string;
   clipboardjs: any = new ClipboardJS('.standup-preview');
 
@@ -30,5 +30,13 @@ export class PreviewComponent implements OnInit {
         panelClass: 'copy-success',
       });
     });
+  }
+
+  isBlockersEmpty() {
+    return (
+      this.blockers.value.length === 0 ||
+      (this.blockers.value.length > 0 &&
+        !this.blockers.value.some((item) => item))
+    );
   }
 }

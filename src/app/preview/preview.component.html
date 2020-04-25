@@ -19,8 +19,11 @@
       </ng-container>
     </ul>
     <p>Blockers</p>
-    <ul>
-      <li>{{ blockers.value }}</li>
+    <ul *ngIf="blockers.value">
+      <li *ngIf="isBlockersEmpty()">N/A</li>
+      <ng-container *ngFor="let blocker of blockers.value">
+        <li *ngIf="blocker">{{ blocker }}</li>
+      </ng-container>
     </ul>
   </div>
 </section>
