@@ -9,12 +9,23 @@ import { name } from '../../../package.json';
 export class HeaderComponent implements OnInit {
   appName: string = name;
   isDarkMode: boolean = true;
+  body: DOMTokenList = document.getElementsByTagName('body')[0].classList;
 
-  constructor() {}
+  ngOnInit(): void {
+    if (localStorage.getItem('darkMode') !== null) {
+      this.isDarkMode = localStorage.getItem('darkMode') === 'true';
+    }
+    this.updateThemeOnBrowser();
+  }
 
-  ngOnInit(): void {}
-
-  toggleTheme() {
+  toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
+    this.updateThemeOnBrowser();
+  }
+
+  updateThemeOnBrowser(): void {
+    this.body.remove(!this.isDarkMode ? 'dark' : 'light');
+    this.body.add(this.isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('darkMode', this.isDarkMode ? 'true' : 'false');
   }
 }
