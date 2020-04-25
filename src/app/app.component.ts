@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import ClipboardJS from 'clipboard';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,12 @@ export class AppComponent implements OnInit {
   @Input() appearance: 'outline';
   standupForm: FormGroup;
   date: String;
+  clipboardjs: any;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private snackbar: MatSnackBar) {}
 
   ngOnInit() {
-    new ClipboardJS('.copy-to-clipboard');
+    this.clipboardjs = new ClipboardJS('.copy-to-clipboard');
     const todayDateObj = new Date();
     const month = todayDateObj.getMonth();
     const day = todayDateObj.getDate();
@@ -26,6 +28,13 @@ export class AppComponent implements OnInit {
       previousChecklist: this.fb.array(['']),
       currentChecklist: this.fb.array(['']),
       blockers: '',
+    });
+
+    this.clipboardjs.on('success', () => {
+      this.snackbar.open('Text copied', '', {
+        duration: 300000000000,
+        panelClass: 'copy-success',
+      });
     });
 
     // for debugging purposes only
