@@ -3,12 +3,12 @@
 </mat-toolbar>
 <div class="wrapper">
   <form [formGroup]="standupForm">
-    <h2>
+    <h3>
       Previous day
       <mat-icon color="accent" (click)="addToChecklist('previousChecklist')"
         >add_box</mat-icon
       >
-    </h2>
+    </h3>
     <div
       class="row-item"
       *ngFor="let control of previousChecklist.controls; index as i"
@@ -29,12 +29,12 @@
       </mat-form-field>
     </div>
 
-    <h2>
+    <h3>
       Today
       <mat-icon color="accent" (click)="addToChecklist('currentChecklist')"
         >add_box</mat-icon
       >
-    </h2>
+    </h3>
     <div
       class="row-item"
       *ngFor="let control of currentChecklist.controls; index as i"
@@ -55,7 +55,7 @@
       </mat-form-field>
     </div>
 
-    <h2>Blockers</h2>
+    <h3>Blockers</h3>
     <div class="row-item">
       <mat-form-field appearance="outline">
         <mat-label>Task</mat-label>
@@ -68,7 +68,7 @@
     </div>
   </form>
   <section id="preview">
-    <h2>Preview</h2>
+    <h3>Preview</h3>
 
     <div
       class="preview copy-to-clipboard"
