@@ -8,15 +8,15 @@
     <p class="title">Standup for {{ date }}</p>
     <p>Previous day</p>
     <ul>
-      <li *ngFor="let checklistItem of previousChecklist.value">
-        {{ checklistItem }}
-      </li>
+      <ng-container *ngFor="let checklistItem of previousChecklist.value">
+        <li *ngIf="checklistItem">{{ checklistItem }}</li>
+      </ng-container>
     </ul>
     <p>Today</p>
     <ul>
-      <li *ngFor="let checklistItem of currentChecklist.value">
-        {{ checklistItem }}
-      </li>
+      <ng-container *ngFor="let checklistItem of currentChecklist.value">
+        <li *ngIf="checklistItem">{{ checklistItem }}</li>
+      </ng-container>
     </ul>
     <p>Blockers</p>
     <ul>
