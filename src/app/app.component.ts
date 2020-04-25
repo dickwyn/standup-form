@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import ClipboardJS from 'clipboard';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    new ClipboardJS('.copy-to-clipboard');
     const todayDateObj = new Date();
     const month = todayDateObj.getMonth();
     const day = todayDateObj.getDate();
@@ -36,6 +38,10 @@ export class AppComponent implements OnInit {
 
   get previousChecklist() {
     return this.standupForm.get('previousChecklist') as FormArray;
+  }
+
+  get blockers() {
+    return this.standupForm.get('blockers') as FormArray;
   }
 
   addToChecklist(controlName: string) {

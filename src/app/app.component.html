@@ -65,8 +65,23 @@
     </div>
   </form>
 
-  <div class="preview">
+  <div class="preview copy-to-clipboard" id="foo" data-clipboard-target="#foo">
     <p class="title">Standup for {{ date }}</p>
-    {{ standupForm.value | json }}
+    <p>Previous day</p>
+    <ul>
+      <li *ngFor="let checklistItem of previousChecklist.value">
+        {{ checklistItem }}
+      </li>
+    </ul>
+    <p>Today</p>
+    <ul>
+      <li *ngFor="let checklistItem of currentChecklist.value">
+        {{ checklistItem }}
+      </li>
+    </ul>
+    <p>Blockers</p>
+    <ul>
+      <li>{{ blockers.value }}</li>
+    </ul>
   </div>
 </div>
