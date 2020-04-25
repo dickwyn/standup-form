@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   standupForm: FormGroup;
+  isMonday: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -39,5 +40,9 @@ export class AppComponent implements OnInit {
   removeFromChecklist(controlName: string, index: number) {
     const formControl = this.standupForm.get(controlName) as FormArray;
     formControl.removeAt(index);
+  }
+
+  setIsMonday(isMonday: boolean) {
+    this.isMonday = isMonday;
   }
 }

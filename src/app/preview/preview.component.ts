@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import ClipboardJS from 'clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +12,7 @@ export class PreviewComponent implements OnInit {
   @Input() previousChecklist: FormArray;
   @Input() currentChecklist: FormArray;
   @Input() blockers: FormArray;
+  @Output() onWeekdayRegistered: EventEmitter<any> = new EventEmitter<any>();
   date: string;
   isMonday: boolean;
   clipboardjs: any = new ClipboardJS('.standup-preview');
@@ -26,6 +27,7 @@ export class PreviewComponent implements OnInit {
 
     this.date = `${month}/${day}/${year}`;
     this.isMonday = todayDateObj.getDay() === 1;
+    this.onWeekdayRegistered.emit(this.isMonday);
 
     this.clipboardjs.on('success', () => {
       this.snackbar.open('Text copied', '', {

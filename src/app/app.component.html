@@ -2,7 +2,8 @@
 <section class="wrapper">
   <form [formGroup]="standupForm">
     <h3>
-      Previous day
+      <ng-template *ngIf="isMonday; else otherDay">Friday</ng-template>
+      <ng-template #otherDay>Yesterday</ng-template>
       <mat-icon color="accent" (click)="addToChecklist('previousChecklist')"
         >add_box</mat-icon
       >
@@ -80,5 +81,6 @@
     [previousChecklist]="previousChecklist"
     [currentChecklist]="currentChecklist"
     [blockers]="blockers"
+    (onWeekdayRegistered)="setIsMonday($event)"
   ></app-preview>
 </section>
