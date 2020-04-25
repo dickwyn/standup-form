@@ -13,6 +13,7 @@ export class PreviewComponent implements OnInit {
   @Input() currentChecklist: FormArray;
   @Input() blockers: FormArray;
   date: string;
+  isMonday: boolean;
   clipboardjs: any = new ClipboardJS('.standup-preview');
 
   constructor(public snackbar: MatSnackBar) {}
@@ -22,7 +23,9 @@ export class PreviewComponent implements OnInit {
     const month = todayDateObj.getMonth();
     const day = todayDateObj.getDate();
     const year = String(todayDateObj.getFullYear()).slice(-2);
+
     this.date = `${month}/${day}/${year}`;
+    this.isMonday = todayDateObj.getDay() === 1;
 
     this.clipboardjs.on('success', () => {
       this.snackbar.open('Text copied', '', {
