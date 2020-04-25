@@ -16,9 +16,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { PreviewComponent } from './preview/preview.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, PreviewComponent],
+  declarations: [AppComponent, PreviewComponent, HeaderComponent],
   imports: [
     BrowserModule,
     FormsModule,

@@ -1,23 +1,5 @@
-<mat-toolbar color="primary">
-  {{ appName }}
-  <span class="spacer"></span>
-  <mat-icon
-    *ngIf="isDarkMode; else darkModeIcon"
-    aria-hidden="false"
-    aria-label="Dark mode on"
-    (click)="toggleTheme()"
-    >brightness_low</mat-icon
-  >
-  <ng-template #darkModeIcon>
-    <mat-icon
-      aria-hidden="false"
-      aria-label="Light mode on"
-      (click)="toggleTheme()"
-      >brightness_high</mat-icon
-    ></ng-template
-  >
-</mat-toolbar>
-<div class="wrapper">
+<app-header></app-header>
+<section class="wrapper">
   <form [formGroup]="standupForm">
     <h3>
       Previous day
@@ -99,4 +81,4 @@
     [currentChecklist]="currentChecklist"
     [blockers]="blockers"
   ></app-preview>
-</div>
+</section>

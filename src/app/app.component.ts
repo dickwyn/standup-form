@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { name } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +8,6 @@ import { name } from '../../package.json';
 })
 export class AppComponent implements OnInit {
   standupForm: FormGroup;
-  appName: string = name;
-  isDarkMode: boolean = true;
 
   constructor(private fb: FormBuilder) {}
 
@@ -42,9 +39,5 @@ export class AppComponent implements OnInit {
   removeFromChecklist(controlName: string, index: number) {
     const formControl = this.standupForm.get(controlName) as FormArray;
     formControl.removeAt(index);
-  }
-
-  toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
   }
 }
