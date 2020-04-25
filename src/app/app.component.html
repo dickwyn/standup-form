@@ -1,11 +1,11 @@
-<mat-toolbar>
+<mat-toolbar color="primary">
   {{ appName }}
 </mat-toolbar>
 <div class="wrapper">
   <form [formGroup]="standupForm">
     <h2>
       Previous day
-      <mat-icon color="primary" (click)="addToChecklist('previousChecklist')"
+      <mat-icon color="accent" (click)="addToChecklist('previousChecklist')"
         >add_box</mat-icon
       >
     </h2>
@@ -31,7 +31,7 @@
 
     <h2>
       Today
-      <mat-icon color="primary" (click)="addToChecklist('currentChecklist')"
+      <mat-icon color="accent" (click)="addToChecklist('currentChecklist')"
         >add_box</mat-icon
       >
     </h2>

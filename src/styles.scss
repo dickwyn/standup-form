@@ -1,4 +1,4 @@
-@import "./theme.scss";
+@import "~@angular/material/theming";
 
 html,
 body {
@@ -9,6 +9,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   .copy-success {
-    background-color: mat-color($accentPalette);
+    background-color: mat-color(mat-palette($mat-deep-orange));
   }
 }
