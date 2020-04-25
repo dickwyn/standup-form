@@ -35,8 +35,6 @@ export class AppComponent implements OnInit {
   }
 
   addToChecklist(controlName: string) {
-    console.log('DIRTY ', this.standupForm.controls.blockers.dirty);
-    console.log('PRIST ', this.standupForm.controls.blockers.pristine);
     const formControl = this.standupForm.get(controlName) as FormArray;
     formControl.push(new FormControl(''));
   }
