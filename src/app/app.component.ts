@@ -10,6 +10,7 @@ import { name } from '../../package.json';
 export class AppComponent implements OnInit {
   standupForm: FormGroup;
   appName: string = name;
+  isDarkMode: boolean = true;
 
   constructor(private fb: FormBuilder) {}
 
@@ -43,5 +44,9 @@ export class AppComponent implements OnInit {
   removeFromChecklist(controlName: string, index: number) {
     const formControl = this.standupForm.get(controlName) as FormArray;
     formControl.removeAt(index);
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
   }
 }

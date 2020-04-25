@@ -1,5 +1,21 @@
 <mat-toolbar color="primary">
   {{ appName }}
+  <span class="spacer"></span>
+  <mat-icon
+    *ngIf="isDarkMode; else darkModeIcon"
+    aria-hidden="false"
+    aria-label="Dark mode on"
+    (click)="toggleTheme()"
+    >brightness_low</mat-icon
+  >
+  <ng-template #darkModeIcon>
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Light mode on"
+      (click)="toggleTheme()"
+      >brightness_high</mat-icon
+    ></ng-template
+  >
 </mat-toolbar>
 <div class="wrapper">
   <form [formGroup]="standupForm">
