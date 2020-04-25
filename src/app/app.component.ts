@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
     this.clipboardjs.on('success', () => {
       this.snackbar.open('Text copied', '', {
-        duration: 300000000000,
+        duration: 3000,
         panelClass: 'copy-success',
       });
     });
