@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     this.standupForm = this.fb.group({
       previousChecklist: this.fb.array(['']),
       currentChecklist: this.fb.array(['']),
-      blockers: this.fb.array(['']),
+      blockers: this.fb.array([]),
     });
   }
 
