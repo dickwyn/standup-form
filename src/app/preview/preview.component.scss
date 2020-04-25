@@ -1,0 +1,21 @@
+.standup-preview {
+  padding: 0.75rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  cursor: copy;
+  height: fit-content;
+
+  p,
+  li,
+  ul {
+    margin: 0 0 0.4ch;
+  }
+
+  .title {
+    font-weight: 700;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+}

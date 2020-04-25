@@ -15,9 +15,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
+import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PreviewComponent],
   imports: [
     BrowserModule,
     FormsModule,

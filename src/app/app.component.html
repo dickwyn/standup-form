@@ -67,31 +67,9 @@
       </mat-form-field>
     </div>
   </form>
-  <section id="preview">
-    <h3>Preview</h3>
-
-    <div
-      class="preview copy-to-clipboard"
-      id="foo"
-      data-clipboard-target="#foo"
-    >
-      <p class="title">Standup for {{ date }}</p>
-      <p>Previous day</p>
-      <ul>
-        <li *ngFor="let checklistItem of previousChecklist.value">
-          {{ checklistItem }}
-        </li>
-      </ul>
-      <p>Today</p>
-      <ul>
-        <li *ngFor="let checklistItem of currentChecklist.value">
-          {{ checklistItem }}
-        </li>
-      </ul>
-      <p>Blockers</p>
-      <ul>
-        <li>{{ blockers.value }}</li>
-      </ul>
-    </div>
-  </section>
+  <app-preview
+    [previousChecklist]="previousChecklist"
+    [currentChecklist]="currentChecklist"
+    [blockers]="blockers"
+  ></app-preview>
 </div>

@@ -1,0 +1,26 @@
+<section>
+  <h3>Preview</h3>
+  <div
+    class="standup-preview"
+    id="full-standup"
+    data-clipboard-target="#full-standup"
+  >
+    <p class="title">Standup for {{ date }}</p>
+    <p>Previous day</p>
+    <ul>
+      <li *ngFor="let checklistItem of previousChecklist.value">
+        {{ checklistItem }}
+      </li>
+    </ul>
+    <p>Today</p>
+    <ul>
+      <li *ngFor="let checklistItem of currentChecklist.value">
+        {{ checklistItem }}
+      </li>
+    </ul>
+    <p>Blockers</p>
+    <ul>
+      <li>{{ blockers.value }}</li>
+    </ul>
+  </div>
+</section>
