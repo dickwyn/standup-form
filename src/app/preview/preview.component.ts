@@ -21,8 +21,8 @@ export class PreviewComponent implements OnInit {
 
   ngOnInit(): void {
     const todayDateObj = new Date();
-    const month = todayDateObj.getMonth();
-    const day = todayDateObj.getDate();
+    const month = ('0' + (todayDateObj.getMonth() + 1)).slice(-2);
+    const day = ('0' + todayDateObj.getDate()).slice(-2);
     const year = String(todayDateObj.getFullYear()).slice(-2);
 
     this.date = `${month}/${day}/${year}`;
