@@ -48,7 +48,7 @@ export class PreviewComponent implements OnInit {
 
     this.clipboardjs.on('success', () => {
       const dataToSave = {
-        expiration: todayDateObj.setHours(24, 0, 0, 0),
+        expiration: new Date().setHours(24, 0, 0, 0),
         currentChecklist: this.currentChecklist.value,
         previousChecklist: this.previousChecklist.value,
       };
