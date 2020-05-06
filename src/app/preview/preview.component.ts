@@ -32,7 +32,7 @@ export class PreviewComponent implements OnInit {
     if (localStorage.getItem('STANDUP_FORM_DATA') !== null) {
       const restored = JSON.parse(localStorage.getItem('STANDUP_FORM_DATA'));
 
-      if (restored.expiration < todayDateObj.getTime()) {
+      if (restored.expiration > todayDateObj.getTime()) {
         restored.currentChecklist.forEach((item, index) => {
           this.currentChecklist.setControl(index, new FormControl(item));
         });
