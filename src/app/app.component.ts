@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     this.standupForm = this.fb.group({
       previousChecklist: this.fb.array(['']),
       currentChecklist: this.fb.array(['']),
-      blockers: this.fb.array([]),
+      blockers: this.fb.array(['']),
     });
   }
 
@@ -51,10 +51,12 @@ export class AppComponent implements OnInit {
   }
 
   resetForm(): void {
+    const fieldsToReset = ['previousChecklist', 'currentChecklist', 'blockers'];
+
     this.standupForm.reset();
-    this.currentChecklist.clear();
-    this.addToChecklist('currentChecklist');
-    this.previousChecklist.clear();
-    this.addToChecklist('previousChecklist');
+    fieldsToReset.forEach((field) => {
+      this[field].clear();
+      this.addToChecklist(field);
+    });
   }
 }
