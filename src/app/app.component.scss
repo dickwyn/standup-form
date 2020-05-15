@@ -19,11 +19,6 @@
       display: flex;
       flex-direction: column;
 
-      button.add {
-        width: 15rem;
-        margin: 0 auto;
-      }
-
       .mat-icon {
         cursor: pointer;
       }
@@ -46,6 +41,10 @@
         .mat-form-field {
           width: 100%;
         }
+      }
+
+      button.add {
+        margin: 0 0 1.25rem;
       }
     }
   }
