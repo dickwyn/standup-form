@@ -1,22 +1,27 @@
-.standup-preview {
-  margin: 0 0 0.75rem;
-  padding: 0.75rem;
-  border: 1px solid #bdbdbd;
-  border-radius: 4px;
-  cursor: copy;
-  height: fit-content;
+section.preview {
+  display: flex;
+  flex-direction: column;
 
-  p,
-  li,
-  ul {
-    margin: 0 0 0.4ch;
-  }
+  .standup-preview {
+    margin: 0 0 1rem;
+    padding: 0.75rem;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    cursor: copy;
+    height: fit-content;
 
-  .title {
-    font-weight: 700;
-  }
+    p,
+    li,
+    ul {
+      margin: 0 0 0.4ch;
+    }
 
-  ul {
-    padding-left: 20px;
+    .title {
+      font-weight: 700;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
   }
 }
