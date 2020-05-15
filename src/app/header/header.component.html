@@ -1,19 +1,23 @@
 <mat-toolbar color="primary">
   {{ appName }}
   <span class="spacer"></span>
-  <mat-icon
+  <button
     *ngIf="isDarkMode; else darkModeIcon"
-    aria-hidden="false"
-    aria-label="Dark mode on"
+    mat-icon-button
+    aria-label="Activate light mode"
+    matTooltip="Activate light mode"
     (click)="toggleTheme()"
-    >brightness_2</mat-icon
   >
+    <mat-icon aria-label="dark-mode-icon">wb_sunny</mat-icon>
+  </button>
   <ng-template #darkModeIcon>
-    <mat-icon
-      aria-hidden="false"
-      aria-label="Light mode on"
+    <button
+      mat-icon-button
+      aria-label="Activate dark mode"
+      matTooltip="Activate dark mode"
       (click)="toggleTheme()"
-      >wb_sunny</mat-icon
-    ></ng-template
-  >
+    >
+      <mat-icon aria-label="dark-mode-icon">brightness_2</mat-icon>
+    </button>
+  </ng-template>
 </mat-toolbar>
