@@ -15,7 +15,7 @@ export class PreviewComponent implements OnInit {
   @Output() onWeekdayRegistered: EventEmitter<any> = new EventEmitter<any>();
   date: string;
   isMonday: boolean;
-  clipboardjs: any = new ClipboardJS('.standup-preview');
+  clipboardjs: any = new ClipboardJS('.copy-button');
 
   constructor(public snackbar: MatSnackBar) {}
 
