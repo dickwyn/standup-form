@@ -19,9 +19,10 @@ import { PreviewComponent } from './preview/preview.component';
 import { HeaderComponent } from './header/header.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, PreviewComponent, HeaderComponent],
+  declarations: [AppComponent, PreviewComponent, HeaderComponent, FooterComponent],
   imports: [
     BrowserModule,
     FormsModule,

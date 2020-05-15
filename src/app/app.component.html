@@ -1,87 +1,93 @@
 <app-header></app-header>
 <section class="wrapper">
-  <form [formGroup]="standupForm">
-    <h3>
-      <span *ngIf="isMonday; else otherDay">Friday</span>
-      <ng-template #otherDay>Yesterday</ng-template>
-      <mat-icon color="accent" (click)="addToChecklist('previousChecklist')"
-        >add_box</mat-icon
-      >
-    </h3>
-    <div
-      class="row-item"
-      *ngFor="let control of previousChecklist.controls; index as i"
-    >
-      <mat-form-field appearance="outline">
-        <mat-label>Task</mat-label>
-        <input
-          matInput
-          placeholder="Had standup meeting for sprint 9"
-          [formControl]="control"
-        />
-        <mat-icon
-          matSuffix
-          color="warn"
-          (click)="removeFromChecklist('previousChecklist', i)"
-          >delete</mat-icon
+  <div class="container">
+    <form [formGroup]="standupForm">
+      <h3>
+        <span *ngIf="isMonday; else otherDay">Friday</span>
+        <ng-template #otherDay>Yesterday</ng-template>
+        <mat-icon color="accent" (click)="addToChecklist('previousChecklist')"
+          >add_box</mat-icon
         >
-      </mat-form-field>
-    </div>
+      </h3>
+      <div
+        class="row-item"
+        *ngFor="let control of previousChecklist.controls; index as i"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Task</mat-label>
+          <input
+            matInput
+            placeholder="Had standup meeting for sprint 9"
+            [formControl]="control"
+          />
+          <mat-icon
+            matSuffix
+            color="warn"
+            (click)="removeFromChecklist('previousChecklist', i)"
+            >delete</mat-icon
+          >
+        </mat-form-field>
+      </div>
 
-    <h3>
-      Today
-      <mat-icon color="accent" (click)="addToChecklist('currentChecklist')"
-        >add_box</mat-icon
-      >
-    </h3>
-    <div
-      class="row-item"
-      *ngFor="let control of currentChecklist.controls; index as i"
-    >
-      <mat-form-field appearance="outline">
-        <mat-label>Task</mat-label>
-        <input
-          matInput
-          placeholder="Had standup meeting for sprint 9"
-          [formControl]="control"
-        />
-        <mat-icon
-          matSuffix
-          color="warn"
-          (click)="removeFromChecklist('currentChecklist', i)"
-          >delete</mat-icon
+      <h3>
+        Today
+        <mat-icon color="accent" (click)="addToChecklist('currentChecklist')"
+          >add_box</mat-icon
         >
-      </mat-form-field>
-    </div>
+      </h3>
+      <div
+        class="row-item"
+        *ngFor="let control of currentChecklist.controls; index as i"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Task</mat-label>
+          <input
+            matInput
+            placeholder="Had standup meeting for sprint 9"
+            [formControl]="control"
+          />
+          <mat-icon
+            matSuffix
+            color="warn"
+            (click)="removeFromChecklist('currentChecklist', i)"
+            >delete</mat-icon
+          >
+        </mat-form-field>
+      </div>
 
-    <h3>
-      Blockers
-      <mat-icon color="accent" (click)="addToChecklist('blockers')"
-        >add_box</mat-icon
-      >
-    </h3>
-    <div class="row-item" *ngFor="let control of blockers.controls; index as i">
-      <mat-form-field appearance="outline">
-        <mat-label>Blocker</mat-label>
-        <input
-          matInput
-          placeholder="Need to meet with Bob"
-          [formControl]="control"
-        />
-        <mat-icon
-          matSuffix
-          color="warn"
-          (click)="removeFromChecklist('blockers', i)"
-          >delete</mat-icon
+      <h3>
+        Blockers
+        <mat-icon color="accent" (click)="addToChecklist('blockers')"
+          >add_box</mat-icon
         >
-      </mat-form-field>
-    </div>
-    <button mat-flat-button (click)="standupForm.reset()">Reset form</button>
-  </form>
-  <app-preview
-    [previousChecklist]="previousChecklist"
-    [currentChecklist]="currentChecklist"
-    [blockers]="blockers"
-    (onWeekdayRegistered)="setIsMonday($event)"
-  ></app-preview>
+      </h3>
+      <div
+        class="row-item"
+        *ngFor="let control of blockers.controls; index as i"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Blocker</mat-label>
+          <input
+            matInput
+            placeholder="Need to meet with Bob"
+            [formControl]="control"
+          />
+          <mat-icon
+            matSuffix
+            color="warn"
+            (click)="removeFromChecklist('blockers', i)"
+            >delete</mat-icon
+          >
+        </mat-form-field>
+      </div>
+      <button mat-flat-button (click)="standupForm.reset()">Reset form</button>
+    </form>
+    <app-preview
+      [previousChecklist]="previousChecklist"
+      [currentChecklist]="currentChecklist"
+      [blockers]="blockers"
+      (onWeekdayRegistered)="setIsMonday($event)"
+    ></app-preview>
+  </div>
 </section>
+<app-footer></app-footer>
