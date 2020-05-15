@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
-import ClipboardJS from 'clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import ClipboardJS from 'clipboard';
 
 @Component({
   selector: 'app-preview',
@@ -17,7 +17,7 @@ export class PreviewComponent implements OnInit {
   isMonday: boolean;
   clipboardjs: any = new ClipboardJS('.copy-button');
 
-  constructor(public snackbar: MatSnackBar) {}
+  constructor(private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     const todayDateObj = new Date();

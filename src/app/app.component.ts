@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 declare var gtag;
 
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   standupForm: FormGroup;
   isMonday = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public snackbar: MatSnackBar) {
     gtag('config', 'UA-64177134-1');
   }
 
@@ -57,6 +58,11 @@ export class AppComponent implements OnInit {
     fieldsToReset.forEach((field) => {
       this[field].clear();
       this.addToChecklist(field);
+    });
+
+    this.snackbar.open('Form has been reset', '', {
+      duration: 3000,
+      panelClass: 'copy-success',
     });
   }
 }
