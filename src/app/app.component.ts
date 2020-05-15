@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 
+declare var gtag;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,7 +12,9 @@ export class AppComponent implements OnInit {
   standupForm: FormGroup;
   isMonday: boolean = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    gtag('config', 'UA-64177134-1');
+  }
 
   ngOnInit() {
     this.standupForm = this.fb.group({
