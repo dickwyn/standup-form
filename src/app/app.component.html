@@ -17,12 +17,15 @@
             placeholder="Had standup meeting for sprint 9"
             [formControl]="control"
           />
-          <mat-icon
+          <button
+            mat-button
             matSuffix
-            color="warn"
+            mat-icon-button
+            aria-label="Delete item"
             (click)="removeFromChecklist('previousChecklist', i)"
-            >delete</mat-icon
           >
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
         </mat-form-field>
       </div>
       <button
@@ -47,12 +50,15 @@
             placeholder="Had standup meeting for sprint 9"
             [formControl]="control"
           />
-          <mat-icon
+          <button
+            mat-button
             matSuffix
-            color="warn"
+            mat-icon-button
+            aria-label="Delete item"
             (click)="removeFromChecklist('currentChecklist', i)"
-            >delete</mat-icon
           >
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
         </mat-form-field>
       </div>
       <button
@@ -77,12 +83,15 @@
             placeholder="Need to meet with Bob"
             [formControl]="control"
           />
-          <mat-icon
+          <button
+            mat-button
             matSuffix
-            color="warn"
+            mat-icon-button
+            aria-label="Delete blocker"
             (click)="removeFromChecklist('blockers', i)"
-            >delete</mat-icon
           >
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
         </mat-form-field>
       </div>
       <button
