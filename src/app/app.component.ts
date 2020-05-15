@@ -10,7 +10,7 @@ declare var gtag;
 })
 export class AppComponent implements OnInit {
   standupForm: FormGroup;
-  isMonday: boolean = false;
+  isMonday = false;
 
   constructor(private fb: FormBuilder) {
     gtag('config', 'UA-64177134-1');
@@ -48,5 +48,13 @@ export class AppComponent implements OnInit {
 
   setIsMonday(isMonday: boolean) {
     this.isMonday = isMonday;
+  }
+
+  resetForm(): void {
+    this.standupForm.reset();
+    this.currentChecklist.clear();
+    this.addToChecklist('currentChecklist');
+    this.previousChecklist.clear();
+    this.addToChecklist('previousChecklist');
   }
 }
