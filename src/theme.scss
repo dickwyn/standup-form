@@ -30,3 +30,7 @@ $dark-theme-warn: mat-palette($mat-deep-orange);
     mat-dark-theme($primary, $accent, $dark-theme-warn)
   );
 }
+
+a {
+  color: mat-color($accent);
+}

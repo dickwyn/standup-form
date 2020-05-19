@@ -1,4 +1,10 @@
 footer {
-  margin: 1.08rem 0 1.38rem;
+  margin: 1.08rem 1.8rem 1.38rem;
   text-align: center;
+
+  mat-icon {
+    font-size: 15px;
+    height: auto;
+    width: auto;
+  }
 }

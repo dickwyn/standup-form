@@ -1,5 +1,28 @@
 <footer>
-  <a mat-button href="https://dickwyn.xyz" target="_blank">
+  <span
+    >Found an issue, or thought of an enhancement? Open an issue on
+    <a href="{{ newIssueUrl }}" target="_blank" rel="noopener noreferrer"
+      >GitHub
+      <mat-icon aria-hidden="false" aria-label="Open link in new tab"
+        >open_in_new</mat-icon
+      ></a
+    >.</span
+  >
+  <br />
+  <a
+    mat-button
+    href="{{ repositoryUrl }}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {{ name }} v{{ version }}
+  </a>
+  <a
+    mat-button
+    href="https://dickwyn.xyz"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     dickwyn.xyz
   </a>
 </footer>
