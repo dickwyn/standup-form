@@ -30,19 +30,27 @@ export class PreviewComponent implements OnInit {
     this.onWeekdayRegistered.emit(this.isMonday);
 
     if (localStorage.getItem('STANDUP_FORM_DATA') !== null) {
-      const restored = JSON.parse(localStorage.getItem('STANDUP_FORM_DATA'));
+      const { expiration, previousChecklist, currentChecklist } = JSON.parse(
+        localStorage.getItem('STANDUP_FORM_DATA')
+      );
 
-      if (restored.expiration > todayDateObj.getTime()) {
-        restored.currentChecklist.forEach((item, index) => {
-          this.currentChecklist.setControl(index, new FormControl(item));
-        });
-        restored.previousChecklist.forEach((item, index) => {
-          this.previousChecklist.setControl(index, new FormControl(item));
-        });
+      if (expiration > todayDateObj.getTime()) {
+        if (currentChecklist !== undefined) {
+          currentChecklist.forEach((item, index) => {
+            this.currentChecklist.setControl(index, new FormControl(item));
+          });
+        }
+        if (previousChecklist !== undefined) {
+          previousChecklist.forEach((item, index) => {
+            this.previousChecklist.setControl(index, new FormControl(item));
+          });
+        }
       } else {
-        restored.currentChecklist.forEach((item, index) => {
-          this.previousChecklist.setControl(index, new FormControl(item));
-        });
+        if (currentChecklist !== undefined) {
+          currentChecklist.forEach((item, index) => {
+            this.previousChecklist.setControl(index, new FormControl(item));
+          });
+        }
       }
     }
 
