@@ -18,6 +18,7 @@
             [formControl]="control"
           />
           <button
+            type="button"
             mat-button
             matSuffix
             mat-icon-button
@@ -29,6 +30,7 @@
         </mat-form-field>
       </div>
       <button
+        type="button"
         class="add"
         mat-stroked-button
         color="accent"
@@ -51,6 +53,7 @@
             [formControl]="control"
           />
           <button
+            type="button"
             mat-button
             matSuffix
             mat-icon-button
@@ -62,6 +65,7 @@
         </mat-form-field>
       </div>
       <button
+        type="button"
         class="add"
         mat-stroked-button
         color="accent"
@@ -84,6 +88,7 @@
             [formControl]="control"
           />
           <button
+            type="button"
             mat-button
             matSuffix
             mat-icon-button
@@ -95,6 +100,7 @@
         </mat-form-field>
       </div>
       <button
+        type="button"
         class="add"
         mat-stroked-button
         color="accent"
@@ -102,7 +108,9 @@
       >
         Add blocker
       </button>
-      <button mat-raised-button (click)="resetForm()">Reset form</button>
+      <button type="button" mat-raised-button (click)="resetForm()">
+        Reset form
+      </button>
     </form>
     <app-preview
       [previousChecklist]="previousChecklist"
