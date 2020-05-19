@@ -8,7 +8,7 @@ import { name } from '../../../package.json';
 })
 export class HeaderComponent implements OnInit {
   appName: string = name;
-  isDarkMode: boolean = true;
+  isDarkMode = false;
   body: DOMTokenList = document.getElementsByTagName('body')[0].classList;
 
   ngOnInit(): void {
