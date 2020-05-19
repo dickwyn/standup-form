@@ -16,6 +16,7 @@
             matInput
             placeholder="Had standup meeting for sprint 9"
             [formControl]="control"
+            (keyup.enter)="addToChecklist('previousChecklist')"
           />
           <button
             type="button"
@@ -51,6 +52,7 @@
             matInput
             placeholder="Had standup meeting for sprint 9"
             [formControl]="control"
+            (keyup.enter)="addToChecklist('currentChecklist')"
           />
           <button
             type="button"
@@ -84,8 +86,9 @@
           <mat-label>Blocker</mat-label>
           <input
             matInput
-            placeholder="Need to meet with Bob"
+            placeholder="Need to meet with Julie"
             [formControl]="control"
+            (keyup.enter)="addToChecklist('blockers')"
           />
           <button
             type="button"
