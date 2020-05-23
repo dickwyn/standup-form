@@ -3,6 +3,16 @@ import { FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import ClipboardJS from 'clipboard';
 
+const weekday = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
@@ -12,10 +22,10 @@ export class PreviewComponent implements OnInit {
   @Input() previousChecklist: FormArray;
   @Input() currentChecklist: FormArray;
   @Input() blockers: FormArray;
-  @Output() onWeekdayRegistered: EventEmitter<any> = new EventEmitter<any>();
+  @Output() weekdayRegistered: EventEmitter<any> = new EventEmitter<any>();
   date: string;
-  isMonday: boolean;
   clipboardjs: any = new ClipboardJS('.copy-button');
+  previousChecklistTitle = 'Yesterday';
 
   constructor(private snackbar: MatSnackBar) {}
 
@@ -26,8 +36,6 @@ export class PreviewComponent implements OnInit {
     const year = String(todayDateObj.getFullYear()).slice(-2);
 
     this.date = `${month}/${day}/${year}`;
-    this.isMonday = todayDateObj.getDay() === 1;
-    this.onWeekdayRegistered.emit(this.isMonday);
 
     if (localStorage.getItem('STANDUP_FORM_DATA') !== null) {
       const { expiration, previousChecklist, currentChecklist } = JSON.parse(
@@ -46,6 +54,11 @@ export class PreviewComponent implements OnInit {
           });
         }
       } else {
+        console.log('here');
+        if (new Date(expiration).getDay() !== todayDateObj.getDay()) {
+          this.previousChecklistTitle =
+            weekday[new Date(expiration - 1000).getDay()];
+        }
         if (currentChecklist !== undefined) {
           currentChecklist.forEach((item, index) => {
             this.previousChecklist.setControl(index, new FormControl(item));
@@ -53,6 +66,8 @@ export class PreviewComponent implements OnInit {
         }
       }
     }
+
+    this.weekdayRegistered.emit(this.previousChecklistTitle);
 
     this.clipboardjs.on('success', () => {
       const dataToSave = {

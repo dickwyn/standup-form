@@ -6,8 +6,7 @@
     data-clipboard-target="#full-standup"
   >
     <p class="title">Standup for {{ date }}</p>
-    <p *ngIf="isMonday; else otherDay">Friday</p>
-    <ng-template #otherDay><p>Yesterday</p></ng-template>
+    <p>{{ previousChecklistTitle }}</p>
     <ul>
       <ng-container *ngFor="let checklistItem of previousChecklist.value">
         <li *ngIf="checklistItem">{{ checklistItem }}</li>

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  AfterViewInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -9,11 +14,15 @@ declare var gtag;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   standupForm: FormGroup;
-  isMonday = false;
+  previousChecklistTitle: string;
 
-  constructor(private fb: FormBuilder, public snackbar: MatSnackBar) {
+  constructor(
+    private fb: FormBuilder,
+    public snackbar: MatSnackBar,
+    private cdr: ChangeDetectorRef
+  ) {
     gtag('config', 'UA-64177134-1');
   }
 
@@ -23,6 +32,10 @@ export class AppComponent implements OnInit {
       currentChecklist: this.fb.array(['']),
       blockers: this.fb.array(['']),
     });
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 
   get currentChecklist() {
@@ -47,8 +60,8 @@ export class AppComponent implements OnInit {
     formControl.removeAt(index);
   }
 
-  setIsMonday(isMonday: boolean) {
-    this.isMonday = isMonday;
+  setPreviousChecklistTitle(title: string) {
+    this.previousChecklistTitle = title;
   }
 
   resetForm(): void {
@@ -59,6 +72,7 @@ export class AppComponent implements OnInit {
       this[field].clear();
       this.addToChecklist(field);
     });
+    localStorage.removeItem('STANDUP_FORM_DATA');
 
     this.snackbar.open('Form has been reset', '', {
       duration: 3000,
