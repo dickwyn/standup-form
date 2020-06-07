@@ -64,6 +64,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.previousChecklistTitle = title;
   }
 
+  handleKeyTab(event, controlName: string, inputIndex: number) {
+    if (this[controlName].controls.length - 1 === inputIndex) {
+      this.addToChecklist(controlName);
+      this.cdr.detectChanges();
+    }
+    document.getElementById(`${controlName}${inputIndex + 1}`).focus();
+  }
+
   resetForm(): void {
     const fieldsToReset = ['previousChecklist', 'currentChecklist', 'blockers'];
 
