@@ -12,10 +12,11 @@
         <mat-form-field appearance="outline">
           <mat-label>Task</mat-label>
           <input
+            id="{{ 'previousChecklist' + i }}"
             matInput
             placeholder="Had standup meeting for sprint 9"
             [formControl]="control"
-            (keyup.enter)="addToChecklist('previousChecklist')"
+            (keyup.enter)="handleKeyTab($event, 'previousChecklist', i)"
           />
           <button
             type="button"
@@ -48,10 +49,11 @@
         <mat-form-field appearance="outline">
           <mat-label>Task</mat-label>
           <input
+            id="{{ 'currentChecklist' + i }}"
             matInput
             placeholder="Had standup meeting for sprint 9"
             [formControl]="control"
-            (keyup.enter)="addToChecklist('currentChecklist')"
+            (keyup.enter)="handleKeyTab($event, 'currentChecklist', i)"
           />
           <button
             type="button"
@@ -84,10 +86,11 @@
         <mat-form-field appearance="outline">
           <mat-label>Blocker</mat-label>
           <input
+            id="{{ 'blockers' + i }}"
             matInput
             placeholder="Need to meet with Julie"
             [formControl]="control"
-            (keyup.enter)="addToChecklist('blockers')"
+            (keyup.enter)="handleKeyTab($event, 'blockers', i)"
           />
           <button
             type="button"
