@@ -1,27 +1,24 @@
 # StandupForm
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.1.
+![Azure Static Web Apps CI/CD](https://github.com/dickwyn/standup-form/workflows/Azure%20Static%20Web%20Apps%20CI/CD/badge.svg?branch=master)
 
-## Development server
+### Easily write daily standup (scrum) updates to the team
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A web app built with Angular that lets your write your updates from the previous day, plans for today and any blockers that you might be facing.
 
-## Code scaffolding
+[![StandupForm](https://raw.githubusercontent.com/dickwyn/standup-form/master/.github/readme-app-preview.png)](https://www.standup-form.dickwyn.xyz)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+- Light / dark mode option. Light mode is turned on by default.
+- Saves the form data (until 11:59pm) when the preview contents have been copied.
+- Empty input fields will hidden on the preview.
+- 'Yesterday' header will switch to the day when time between the last copy of the preview exceeds 2 days.
+- Clicking enter on an input field will create a new input field.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Running the project
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+$ yarn install
+$ yarn start
+```
