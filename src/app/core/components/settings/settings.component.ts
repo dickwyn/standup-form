@@ -18,15 +18,17 @@ export class AppSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.customizationsForm = this.fb.group({
       hideEmptyLists: false,
+      displayDayOnPreviousChecklist: false,
     });
 
     if (localStorage.getItem('appSettings') !== null) {
-      const { hideEmptyLists } = JSON.parse(
+      const { hideEmptyLists, displayDayOnPreviousChecklist } = JSON.parse(
         localStorage.getItem('appSettings')
       );
 
       this.customizationsForm.setValue({
         hideEmptyLists,
+        displayDayOnPreviousChecklist,
       });
     }
   }
@@ -36,6 +38,7 @@ export class AppSettingsComponent implements OnInit {
       'appSettings',
       JSON.stringify({
         hideEmptyLists: this.hideEmptyLists.value,
+        displayDayOnPreviousChecklist: this.displayDayOnPreviousChecklist.value,
       })
     );
     this.appSettingsService.onUpdated();
@@ -43,5 +46,11 @@ export class AppSettingsComponent implements OnInit {
 
   get hideEmptyLists(): FormControl {
     return this.customizationsForm.get('hideEmptyLists') as FormControl;
+  }
+
+  get displayDayOnPreviousChecklist(): FormControl {
+    return this.customizationsForm.get(
+      'displayDayOnPreviousChecklist'
+    ) as FormControl;
   }
 }

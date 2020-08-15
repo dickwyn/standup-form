@@ -10,6 +10,7 @@ import { FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import ClipboardJS from 'clipboard';
 import { AppSettingsService } from '../../../core/services/settings.service';
+import { LOCAL_STORAGE_KEY } from '../../../core/constants';
 
 const weekday = [
   'Sunday',
@@ -53,10 +54,25 @@ export class PreviewComponent implements OnInit, AfterViewInit {
     this.userSettings = JSON.parse(localStorage.getItem('appSettings'));
     this.isBlockersEmpty = this.isFormArrayEmpty(this.blockers);
 
-    if (localStorage.getItem('STANDUP_FORM_DATA') !== null) {
+    if (
+      localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA) !== null ||
+      localStorage.getItem('STANDUP_FORM_DATA') !== null
+    ) {
+      const lsKeyToUse =
+        localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA) === null
+          ? 'STANDUP_FORM_DATA'
+          : LOCAL_STORAGE_KEY.STANDUP_FORM_DATA;
       const { expiration, previousChecklist, currentChecklist } = JSON.parse(
-        localStorage.getItem('STANDUP_FORM_DATA')
+        localStorage.getItem(lsKeyToUse)
       );
+
+      if (
+        this.userSettings &&
+        this.userSettings.displayDayOnPreviousChecklist
+      ) {
+        this.previousChecklistTitle =
+          weekday[new Date(expiration - 1000).getDay()];
+      }
 
       if (expiration > todayDateObj.getTime()) {
         if (currentChecklist !== undefined) {
@@ -76,7 +92,7 @@ export class PreviewComponent implements OnInit, AfterViewInit {
 
           if (
             new Date(expiration).getMilliseconds() -
-              todayDateObj.getMilliseconds() <
+              todayDateObj.getMilliseconds() >
             345600000
           ) {
             this.previousChecklistTitle += ` (${new Date(
@@ -115,6 +131,17 @@ export class PreviewComponent implements OnInit, AfterViewInit {
 
     this.appSettingsService.updated.subscribe(() => {
       this.userSettings = JSON.parse(localStorage.getItem('appSettings'));
+      if (localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA) !== null) {
+        const { expiration } = JSON.parse(
+          localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA)
+        );
+
+        this.previousChecklistTitle = this.userSettings
+          .displayDayOnPreviousChecklist
+          ? weekday[new Date(expiration - 1000).getDay()]
+          : 'Yesterday';
+        this.weekdayRegistered.emit(this.previousChecklistTitle);
+      }
     });
   }
 

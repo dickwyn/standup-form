@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LOCAL_STORAGE_KEY } from './core/constants';
 
 declare var gtag;
 
@@ -80,7 +81,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this[field].clear();
       this.addToChecklist(field);
     });
-    localStorage.removeItem('STANDUP_FORM_DATA');
+    localStorage.removeItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA);
 
     this.snackbar.open('Form has been reset', '', {
       duration: 3000,
