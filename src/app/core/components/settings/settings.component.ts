@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppSettingsService } from '../../services/settings.service';
 import { LOCAL_STORAGE_KEY } from '../../constants';
+import { UserSettings } from '../../models/settings';
 
 @Component({
   selector: 'app-settings',
@@ -25,7 +26,7 @@ export class AppSettingsComponent implements OnInit {
     if (localStorage.getItem(LOCAL_STORAGE_KEY.SETTINGS) !== null) {
       const { hideEmptyLists, displayDayOnPreviousChecklist } = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_KEY.SETTINGS)
-      );
+      ) as UserSettings;
 
       this.customizationsForm.setValue({
         hideEmptyLists,
@@ -35,13 +36,12 @@ export class AppSettingsComponent implements OnInit {
   }
 
   onSave(): void {
-    localStorage.setItem(
-      LOCAL_STORAGE_KEY.SETTINGS,
-      JSON.stringify({
-        hideEmptyLists: this.hideEmptyLists.value,
-        displayDayOnPreviousChecklist: this.displayDayOnPreviousChecklist.value,
-      })
-    );
+    const toSave: UserSettings = {
+      hideEmptyLists: this.hideEmptyLists.value,
+      displayDayOnPreviousChecklist: this.displayDayOnPreviousChecklist.value,
+    };
+
+    localStorage.setItem(LOCAL_STORAGE_KEY.SETTINGS, JSON.stringify(toSave));
     this.appSettingsService.onUpdated();
   }
 
