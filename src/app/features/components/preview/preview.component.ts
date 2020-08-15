@@ -51,7 +51,9 @@ export class PreviewComponent implements OnInit, AfterViewInit {
 
     this.date = `${month}/${day}/${year}`;
 
-    this.userSettings = JSON.parse(localStorage.getItem('appSettings'));
+    this.userSettings = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEY.SETTINGS)
+    );
     this.isBlockersEmpty = this.isFormArrayEmpty(this.blockers);
 
     if (
@@ -130,7 +132,9 @@ export class PreviewComponent implements OnInit, AfterViewInit {
     });
 
     this.appSettingsService.updated.subscribe(() => {
-      this.userSettings = JSON.parse(localStorage.getItem('appSettings'));
+      this.userSettings = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_KEY.SETTINGS)
+      );
       if (localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA) !== null) {
         const { expiration } = JSON.parse(
           localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA)

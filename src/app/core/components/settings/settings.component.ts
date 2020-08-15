@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppSettingsService } from '../../services/settings.service';
+import { LOCAL_STORAGE_KEY } from '../../constants';
 
 @Component({
   selector: 'app-settings',
@@ -21,9 +22,9 @@ export class AppSettingsComponent implements OnInit {
       displayDayOnPreviousChecklist: false,
     });
 
-    if (localStorage.getItem('appSettings') !== null) {
+    if (localStorage.getItem(LOCAL_STORAGE_KEY.SETTINGS) !== null) {
       const { hideEmptyLists, displayDayOnPreviousChecklist } = JSON.parse(
-        localStorage.getItem('appSettings')
+        localStorage.getItem(LOCAL_STORAGE_KEY.SETTINGS)
       );
 
       this.customizationsForm.setValue({
@@ -35,7 +36,7 @@ export class AppSettingsComponent implements OnInit {
 
   onSave(): void {
     localStorage.setItem(
-      'appSettings',
+      LOCAL_STORAGE_KEY.SETTINGS,
       JSON.stringify({
         hideEmptyLists: this.hideEmptyLists.value,
         displayDayOnPreviousChecklist: this.displayDayOnPreviousChecklist.value,
