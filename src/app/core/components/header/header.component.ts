@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { name } from '../../../../../package.json';
 import { AppSettingsComponent } from '../settings/settings.component';
+import { LOCAL_STORAGE_KEY } from '../../constants';
 
 @Component({
   selector: 'app-header',
@@ -30,9 +31,11 @@ export class HeaderComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('darkMode') !== null) {
+    if (localStorage.getItem(LOCAL_STORAGE_KEY.THEME) !== null) {
       this.currentTheme =
-        localStorage.getItem('darkMode') === 'true' ? 'dark' : 'light';
+        localStorage.getItem(LOCAL_STORAGE_KEY.THEME) === 'true'
+          ? 'dark'
+          : 'light';
     }
     this.updateThemeOnBrowser();
   }
@@ -49,10 +52,10 @@ export class HeaderComponent implements OnInit {
 
     if (this.currentTheme === 'auto') {
       userSelectedTheme = this.prefersColorScheme('dark') ? 'dark' : 'light';
-      localStorage.removeItem('darkMode');
+      localStorage.removeItem(LOCAL_STORAGE_KEY.THEME);
     } else {
       localStorage.setItem(
-        'darkMode',
+        LOCAL_STORAGE_KEY.THEME,
         this.currentTheme === 'dark' ? 'true' : 'false'
       );
     }
