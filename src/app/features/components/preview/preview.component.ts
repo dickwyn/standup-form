@@ -68,12 +68,11 @@ export class PreviewComponent implements OnInit, AfterViewInit {
         localStorage.getItem(lsKeyToUse)
       );
 
-      if (
-        this.userSettings &&
-        this.userSettings.displayDayOnPreviousChecklist
-      ) {
-        this.previousChecklistTitle =
-          weekday[new Date(expiration - 1000).getDay()];
+      if (this.userSettings) {
+        this.previousChecklistTitle = this.userSettings
+          .displayDayOnPreviousChecklist
+          ? weekday[new Date(expiration - 86400001).getDay()]
+          : 'Yesterday';
       }
 
       if (expiration > todayDateObj.getTime()) {
@@ -118,7 +117,10 @@ export class PreviewComponent implements OnInit, AfterViewInit {
         currentChecklist: this.currentChecklist.value,
         previousChecklist: this.previousChecklist.value,
       };
-      localStorage.setItem('STANDUP_FORM_DATA', JSON.stringify(dataToSave));
+      localStorage.setItem(
+        LOCAL_STORAGE_KEY.STANDUP_FORM_DATA,
+        JSON.stringify(dataToSave)
+      );
       this.snackbar.open('Text copied', '', {
         duration: 3000,
         panelClass: 'copy-success',
@@ -135,6 +137,7 @@ export class PreviewComponent implements OnInit, AfterViewInit {
       this.userSettings = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_KEY.SETTINGS)
       );
+
       if (localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA) !== null) {
         const { expiration } = JSON.parse(
           localStorage.getItem(LOCAL_STORAGE_KEY.STANDUP_FORM_DATA)
@@ -142,7 +145,7 @@ export class PreviewComponent implements OnInit, AfterViewInit {
 
         this.previousChecklistTitle = this.userSettings
           .displayDayOnPreviousChecklist
-          ? weekday[new Date(expiration - 1000).getDay()]
+          ? weekday[new Date(expiration - 86400001).getDay()]
           : 'Yesterday';
         this.weekdayRegistered.emit(this.previousChecklistTitle);
       }
