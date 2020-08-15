@@ -18,7 +18,9 @@
         <li *ngIf="checklistItem">{{ checklistItem }}</li>
       </ng-container>
     </ul>
-    <div *ngIf="!isBlockersEmpty || !userSettings.hideEmptyLists">
+    <div
+      *ngIf="!isBlockersEmpty || (userSettings && !userSettings.hideEmptyLists)"
+    >
       <p>Blockers:</p>
       <ul *ngIf="blockers.value">
         <li *ngIf="isBlockersEmpty">N/A</li>
