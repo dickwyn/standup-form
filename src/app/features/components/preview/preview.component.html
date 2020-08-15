@@ -19,7 +19,9 @@
       </ng-container>
     </ul>
     <div
-      *ngIf="!isBlockersEmpty || (userSettings && !userSettings.hideEmptyLists)"
+      *ngIf="
+        !isBlockersEmpty || (userSettings ? !userSettings.hideEmptyLists : true)
+      "
     >
       <p>Blockers:</p>
       <ul *ngIf="blockers.value">
