@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Settings</h1>
+<div mat-dialog-content>
+  <form [formGroup]="customizationsForm">
+    <mat-checkbox formControlName="hideEmptyLists"
+      >Hide empty list(s)</mat-checkbox
+    >
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="onSave()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

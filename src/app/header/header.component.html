@@ -22,4 +22,11 @@
       {{ theme.value.name | titlecase }}
     </button>
   </mat-menu>
+  <mat-icon
+    mat-icon-button
+    aria-label="Open app settings"
+    matTooltip="Open app settings"
+    (click)="openDialog()"
+    >settings</mat-icon
+  >
 </mat-toolbar>

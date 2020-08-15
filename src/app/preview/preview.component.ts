@@ -1,7 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  AfterViewInit,
+} from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import ClipboardJS from 'clipboard';
+import { AppSettingsService } from '../services/app-settings.service';
 
 const weekday = [
   'Sunday',
@@ -18,7 +26,7 @@ const weekday = [
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.scss'],
 })
-export class PreviewComponent implements OnInit {
+export class PreviewComponent implements OnInit, AfterViewInit {
   @Input() previousChecklist: FormArray;
   @Input() currentChecklist: FormArray;
   @Input() blockers: FormArray;
@@ -26,8 +34,13 @@ export class PreviewComponent implements OnInit {
   date: string;
   clipboardjs: any = new ClipboardJS('.copy-button');
   previousChecklistTitle = 'Yesterday';
+  userSettings;
+  isBlockersEmpty: boolean;
 
-  constructor(private snackbar: MatSnackBar) {}
+  constructor(
+    private snackbar: MatSnackBar,
+    private appSettingsService: AppSettingsService
+  ) {}
 
   ngOnInit(): void {
     const todayDateObj = new Date();
@@ -36,6 +49,9 @@ export class PreviewComponent implements OnInit {
     const year = String(todayDateObj.getFullYear()).slice(-2);
 
     this.date = `${month}/${day}/${year}`;
+
+    this.userSettings = JSON.parse(localStorage.getItem('appSettings'));
+    this.isBlockersEmpty = this.isFormArrayEmpty(this.blockers);
 
     if (localStorage.getItem('STANDUP_FORM_DATA') !== null) {
       const { expiration, previousChecklist, currentChecklist } = JSON.parse(
@@ -92,11 +108,20 @@ export class PreviewComponent implements OnInit {
     });
   }
 
-  isBlockersEmpty() {
+  ngAfterViewInit() {
+    this.blockers.valueChanges.subscribe(() => {
+      this.isBlockersEmpty = this.isFormArrayEmpty(this.blockers);
+    });
+
+    this.appSettingsService.updated.subscribe(() => {
+      this.userSettings = JSON.parse(localStorage.getItem('appSettings'));
+    });
+  }
+
+  isFormArrayEmpty(formArray: FormArray): boolean {
     return (
-      this.blockers.value.length === 0 ||
-      (this.blockers.value.length > 0 &&
-        !this.blockers.value.some((item) => item))
+      formArray.value.length === 0 ||
+      (formArray.value.length > 0 && !formArray.value.some((item) => item))
     );
   }
 }

@@ -18,13 +18,15 @@
         <li *ngIf="checklistItem">{{ checklistItem }}</li>
       </ng-container>
     </ul>
-    <p>Blockers:</p>
-    <ul *ngIf="blockers.value">
-      <li *ngIf="isBlockersEmpty()">N/A</li>
-      <ng-container *ngFor="let blocker of blockers.value">
-        <li *ngIf="blocker">{{ blocker }}</li>
-      </ng-container>
-    </ul>
+    <div *ngIf="!isBlockersEmpty || !userSettings.hideEmptyLists">
+      <p>Blockers:</p>
+      <ul *ngIf="blockers.value">
+        <li *ngIf="isBlockersEmpty">N/A</li>
+        <ng-container *ngFor="let blocker of blockers.value">
+          <li *ngIf="blocker">{{ blocker }}</li>
+        </ng-container>
+      </ul>
+    </div>
   </div>
   <button
     mat-flat-button

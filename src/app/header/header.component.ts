@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { name } from '../../../package.json';
+import { AppSettingsComponent } from '../app-settings/app-settings.component';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +26,8 @@ export class HeaderComponent implements OnInit {
       icon: 'wb_sunny',
     },
   };
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('darkMode') !== null) {
@@ -59,5 +63,11 @@ export class HeaderComponent implements OnInit {
   prefersColorScheme(preferredTheme: string): boolean {
     return window.matchMedia(`(prefers-color-scheme: ${preferredTheme})`)
       .matches;
+  }
+
+  openDialog() {
+    this.dialog.open(AppSettingsComponent, {
+      disableClose: true,
+    });
   }
 }

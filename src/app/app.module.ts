@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { PreviewComponent } from './preview/preview.component';
@@ -23,6 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FooterComponent } from './footer/footer.component';
+import { AppSettingsComponent } from './app-settings/app-settings.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
     PreviewComponent,
     HeaderComponent,
     FooterComponent,
+    AppSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { FooterComponent } from './footer/footer.component';
     MatTooltipModule,
     MatDialogModule,
     MatMenuModule,
+    MatRadioModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
