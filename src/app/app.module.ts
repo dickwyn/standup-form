@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { PreviewComponent } from './preview/preview.component';
@@ -44,6 +46,8 @@ import { FooterComponent } from './footer/footer.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatDialogModule,
+    MatMenuModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),

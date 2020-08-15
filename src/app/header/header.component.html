@@ -2,22 +2,24 @@
   {{ appName }}
   <span class="spacer"></span>
   <button
-    *ngIf="isDarkMode; else darkModeIcon"
-    mat-icon-button
-    aria-label="Activate light mode"
-    matTooltip="Activate light mode"
-    (click)="toggleTheme()"
+    mat-button
+    [matMenuTriggerFor]="themePicker"
+    aria-label="Select app theme"
+    matTooltip="Select app theme. Current theme: {{ currentTheme }}"
   >
-    <mat-icon aria-label="dark-mode-icon">wb_sunny</mat-icon>
+    <mat-icon class="material-icons-outlined" aria-label="app-settings-icon">{{
+      themes[currentTheme].icon
+    }}</mat-icon>
+    {{ currentTheme | titlecase }}
+    <mat-icon>arrow_drop_down</mat-icon>
   </button>
-  <ng-template #darkModeIcon>
+  <mat-menu #themePicker="matMenu">
     <button
-      mat-icon-button
-      aria-label="Activate dark mode"
-      matTooltip="Activate dark mode"
-      (click)="toggleTheme()"
+      mat-menu-item
+      *ngFor="let theme of themes | keyvalue"
+      (click)="onThemeChanged(theme.value.name)"
     >
-      <mat-icon aria-label="dark-mode-icon">brightness_2</mat-icon>
+      {{ theme.value.name | titlecase }}
     </button>
-  </ng-template>
+  </mat-menu>
 </mat-toolbar>

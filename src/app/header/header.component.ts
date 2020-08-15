@@ -8,24 +8,56 @@ import { name } from '../../../package.json';
 })
 export class HeaderComponent implements OnInit {
   appName: string = name;
-  isDarkMode = false;
   body: DOMTokenList = document.getElementsByTagName('body')[0].classList;
+  currentTheme = 'auto';
+  themes = {
+    auto: {
+      name: 'auto',
+      icon: 'brightness_auto',
+    },
+    dark: {
+      name: 'dark',
+      icon: 'brightness_2',
+    },
+    light: {
+      name: 'light',
+      icon: 'wb_sunny',
+    },
+  };
 
   ngOnInit(): void {
     if (localStorage.getItem('darkMode') !== null) {
-      this.isDarkMode = localStorage.getItem('darkMode') === 'true';
+      this.currentTheme =
+        localStorage.getItem('darkMode') === 'true' ? 'dark' : 'light';
     }
     this.updateThemeOnBrowser();
   }
 
-  toggleTheme(): void {
-    this.isDarkMode = !this.isDarkMode;
-    this.updateThemeOnBrowser();
+  onThemeChanged(selectedTheme: string): void {
+    if (selectedTheme !== this.currentTheme) {
+      this.currentTheme = selectedTheme;
+      this.updateThemeOnBrowser();
+    }
   }
 
   updateThemeOnBrowser(): void {
-    this.body.remove(!this.isDarkMode ? 'dark' : 'light');
-    this.body.add(this.isDarkMode ? 'dark' : 'light');
-    localStorage.setItem('darkMode', this.isDarkMode ? 'true' : 'false');
+    let userSelectedTheme = this.currentTheme;
+
+    if (this.currentTheme === 'auto') {
+      userSelectedTheme = this.prefersColorScheme('dark') ? 'dark' : 'light';
+      localStorage.removeItem('darkMode');
+    } else {
+      localStorage.setItem(
+        'darkMode',
+        this.currentTheme === 'dark' ? 'true' : 'false'
+      );
+    }
+    this.body.remove('dark', 'light');
+    this.body.add(userSelectedTheme);
+  }
+
+  prefersColorScheme(preferredTheme: string): boolean {
+    return window.matchMedia(`(prefers-color-scheme: ${preferredTheme})`)
+      .matches;
   }
 }
