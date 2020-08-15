@@ -1,12 +1,12 @@
 # StandupForm
 
-![Azure Static Web Apps CI/CD](https://github.com/dickwyn/standup-form/workflows/Azure%20Static%20Web%20Apps%20CI/CD/badge.svg?branch=master)
+![Azure Static Web Apps CI/CD](https://github.com/dickwyn/standup-form/workflows/Azure%20Static%20Web%20Apps%20CI/CD/badge.svg?branch=main)
 
 ### Easily write daily standup (scrum) updates to the team
 
 A web app built with Angular that lets your write your updates from the previous day, plans for today and any blockers that you might be facing.
 
-[![StandupForm](https://raw.githubusercontent.com/dickwyn/standup-form/master/.github/readme-app-preview.png)](https://www.standup-form.dickwyn.xyz)
+[![StandupForm](https://raw.githubusercontent.com/dickwyn/standup-form/main/.github/readme-app-preview.png)](https://www.standup-form.dickwyn.xyz)
 
 ## Features
 
