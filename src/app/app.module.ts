@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,14 +15,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
-
-import { AppComponent } from './app.component';
-import { PreviewComponent } from './preview/preview.component';
-import { HeaderComponent } from './header/header.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppComponent } from './app.component';
+import { PreviewComponent } from './features/components/preview/preview.component';
+import { HeaderComponent } from './core/components/header/header.component';
 import { environment } from '../environments/environment';
-import { FooterComponent } from './footer/footer.component';
-import { AppSettingsComponent } from './app-settings/app-settings.component';
+import { FooterComponent } from './core/components/footer/footer.component';
+import { AppSettingsComponent } from './core/components/settings/settings.component';
 
 @NgModule({
   declarations: [

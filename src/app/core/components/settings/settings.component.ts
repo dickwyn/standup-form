@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { AppSettingsService } from '../services/app-settings.service';
+import { AppSettingsService } from '../../services/settings.service';
 
 @Component({
-  selector: 'app-app-settings',
-  templateUrl: './app-settings.component.html',
-  styleUrls: ['./app-settings.component.scss'],
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
 })
 export class AppSettingsComponent implements OnInit {
   customizationsForm: FormGroup;

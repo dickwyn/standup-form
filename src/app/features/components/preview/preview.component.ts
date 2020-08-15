@@ -9,7 +9,7 @@ import {
 import { FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import ClipboardJS from 'clipboard';
-import { AppSettingsService } from '../services/app-settings.service';
+import { AppSettingsService } from '../../../core/services/settings.service';
 
 const weekday = [
   'Sunday',
