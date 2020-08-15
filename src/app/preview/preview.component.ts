@@ -54,10 +54,19 @@ export class PreviewComponent implements OnInit {
           });
         }
       } else {
-        console.log('here');
         if (new Date(expiration).getDay() !== todayDateObj.getDay()) {
           this.previousChecklistTitle =
             weekday[new Date(expiration - 1000).getDay()];
+
+          if (
+            new Date(expiration).getMilliseconds() -
+              todayDateObj.getMilliseconds() <
+            345600000
+          ) {
+            this.previousChecklistTitle += ` (${new Date(
+              expiration - 1
+            ).toLocaleDateString()})`;
+          }
         }
         if (currentChecklist !== undefined) {
           currentChecklist.forEach((item, index) => {
