@@ -31,6 +31,7 @@ export class PreviewComponent implements OnInit, AfterViewInit {
   @Input() previousChecklist: FormArray;
   @Input() currentChecklist: FormArray;
   @Input() blockers: FormArray;
+  @Output() onFormSaved: EventEmitter<any> = new EventEmitter<any>();
   @Output() weekdayRegistered: EventEmitter<any> = new EventEmitter<any>();
   date: string;
   clipboardjs: any = new ClipboardJS('.copy-button');
@@ -121,6 +122,7 @@ export class PreviewComponent implements OnInit, AfterViewInit {
         LOCAL_STORAGE_KEY.STANDUP_FORM_DATA,
         JSON.stringify(dataToSave)
       );
+      this.onFormSaved.emit();
       this.snackbar.open('Text copied', '', {
         duration: 3000,
         panelClass: 'copy-success',

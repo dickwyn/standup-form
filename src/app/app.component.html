@@ -127,6 +127,7 @@
       [previousChecklist]="previousChecklist"
       [currentChecklist]="currentChecklist"
       [blockers]="blockers"
+      (onFormSaved)="onFormSaved()"
       (weekdayRegistered)="setPreviousChecklistTitle($event)"
     ></app-preview>
   </div>

@@ -3,6 +3,7 @@ import {
   OnInit,
   ChangeDetectorRef,
   AfterViewInit,
+  HostListener,
 } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,6 +19,12 @@ declare var gtag;
 export class AppComponent implements OnInit, AfterViewInit {
   standupForm: FormGroup;
   previousChecklistTitle: string;
+  @HostListener('window:beforeunload', ['$event'])
+  doSomething($event) {
+    if (this.standupForm.dirty) {
+      return ($event.returnValue = true);
+    }
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -71,6 +78,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.cdr.detectChanges();
     }
     document.getElementById(`${controlName}${inputIndex + 1}`).focus();
+  }
+
+  onFormSaved() {
+    this.standupForm.markAsPristine();
   }
 
   resetForm(): void {
