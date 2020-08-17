@@ -1,7 +1,7 @@
 {
   "name": "standup-form",
   "description": "Simple standup form",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "author": "Dick Wyn Yong <dickwyn@outlook.com>",
   "scripts": {
     "ng": "ng",
