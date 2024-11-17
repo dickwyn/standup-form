@@ -6,8 +6,8 @@ $standup-form-theme: mat.define-theme(
   (
     color: (
       theme-type: light,
-      primary: mat.$m2-red-palette,
-      tertiary: mat.$m2-blue-palette,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
     ),
     density: (
       scale: 0,
