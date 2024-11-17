@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "standup-form:build"
+            "buildTarget": "standup-form:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "standup-form:build:production"
+              "buildTarget": "standup-form:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "standup-form:build"
+            "buildTarget": "standup-form:build"
           }
         },
         "test": {
