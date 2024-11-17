@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { name } from '../../../../../package.json';
 import { AppSettingsComponent } from '../settings/settings.component';
 import { LOCAL_STORAGE_KEY } from '../../constants';
 
@@ -10,7 +9,7 @@ import { LOCAL_STORAGE_KEY } from '../../constants';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  appName: string = name;
+  appName = 'standup-form';
   body: DOMTokenList = document.getElementsByTagName('body')[0].classList;
   currentTheme = 'auto';
   themes = {
