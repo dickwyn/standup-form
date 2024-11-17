@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AppSettingsComponent } from '../settings/settings.component';
 import { LOCAL_STORAGE_KEY } from '../../constants';
 
