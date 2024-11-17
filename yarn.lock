@@ -246,7 +246,7 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-18.2.12.tgz#fae01c650c0bcc1618c7cf4681623f6c6ff6db52"
   integrity sha512-oaiVAnGzmPZvrXdGh8XnosaqfEPbZxO2225MxbbrD49XTqUgpaS2zrz1Uf5j42e8qytA2kj8tckLq7PAMm0D1w==
 
-"@angular/material@^18.2.13":
+"@angular/material@~18.2.13":
   version "18.2.13"
   resolved "https://registry.yarnpkg.com/@angular/material/-/material-18.2.13.tgz#083c9b2fec3f10ba6f6778978618beb4b23fb03e"
   integrity sha512-Gxyyo6G+IXJwgf6zDTjPfFJ2PnjC2YXWKGkKKG2oR0jfiYiovDvNR4oXxhsztTwkaxLwck/gscoVTSQXMkU5fg==
