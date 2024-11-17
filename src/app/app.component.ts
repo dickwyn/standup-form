@@ -6,7 +6,7 @@ import {
   HostListener,
 } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, UntypedFormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import { LOCAL_STORAGE_KEY } from './core/constants';
 
 declare var gtag;

@@ -7,7 +7,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { UntypedFormArray, UntypedFormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar';
 import ClipboardJS from 'clipboard';
 import { AppSettingsService } from '../../../core/services/settings.service';
 import { LOCAL_STORAGE_KEY } from '../../../core/constants';

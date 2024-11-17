@@ -4,7 +4,16 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat.core(mat.define-typography-config($font-family: "Roboto Slab"));
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config($font-family: "Roboto Slab"));`
+@include mat.all-legacy-component-typographies(mat.define-legacy-typography-config($font-family: "Roboto Slab"));
+@include mat.legacy-core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -22,11 +31,11 @@ $dark-theme-warn: mat.define-palette(mat.$deep-orange-palette);
 // that you are using.
 // themes will be switched based on class names, angular will switch classes which will trigger the theme change
 .light {
-  @include mat.all-component-themes(mat.define-light-theme($primary, $accent));
+  @include mat.all-legacy-component-themes(mat.define-light-theme($primary, $accent));
 }
 
 .dark {
-  @include mat.all-component-themes(
+  @include mat.all-legacy-component-themes(
     mat.define-dark-theme($primary, $accent, $dark-theme-warn)
   );
 }
