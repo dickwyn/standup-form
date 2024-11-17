@@ -112,7 +112,6 @@
       }
     }
   },
-  "defaultProject": "standup-form",
   "cli": {
     "analytics": "c4be62a9-1058-4fb8-8695-60bc3d4320df"
   }
