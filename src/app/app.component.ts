@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef, AfterViewInit, HostListener } fro
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LOCAL_STORAGE_KEY } from './core/constants';
+import { combineLatest } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -27,10 +29,33 @@ export class AppComponent implements OnInit, AfterViewInit {
       currentChecklist: this.fb.array([this.fb.control('', Validators.required)]),
       blockers: this.fb.array(['']),
     });
+
+    this.standupForm.disable();
+
+    this.standupForm.valueChanges.subscribe((form) => {
+      console.log(this.standupForm.dirty);
+    });
+
+    combineLatest([this.standupForm.statusChanges, this.previousChecklist.statusChanges])
+      .pipe(
+        tap((value) => console.log('combineLatest debug', value)),
+        map(([formStatus, checklistStatus]) => ({
+          formValid: formStatus === 'VALID',
+          checklistValid: checklistStatus === 'VALID',
+        })),
+        filter(({ formValid, checklistValid }) => formValid && checklistValid)
+      )
+      .subscribe(({ formValid, checklistValid }) => {
+        console.log('Both the form and previousChecklist are valid!');
+      });
   }
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
+  }
+
+  get isFormDisabled() {
+    return this.standupForm.disabled;
   }
 
   get currentChecklist() {

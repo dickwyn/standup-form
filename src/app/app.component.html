@@ -5,10 +5,7 @@
       <h3>
         {{ previousChecklistTitle }}
       </h3>
-      <div
-        class="row-item"
-        *ngFor="let control of previousChecklist.controls; index as i"
-      >
+      <div class="row-item" *ngFor="let control of previousChecklist.controls; index as i">
         <mat-form-field appearance="outline">
           <mat-label>Task</mat-label>
           <input
@@ -24,12 +21,11 @@
             mat-icon-button
             aria-label="Delete item"
             (click)="removeFromChecklist('previousChecklist', i)"
+            [disabled]="isFormDisabled"
           >
             <mat-icon class="material-icons-outlined">delete</mat-icon>
           </button>
-          <mat-error *ngIf="control.hasError('required')">
-            This is required.
-          </mat-error>
+          <mat-error *ngIf="control.hasError('required')"> This is required. </mat-error>
         </mat-form-field>
       </div>
       <button
@@ -37,14 +33,12 @@
         class="add"
         mat-stroked-button
         (click)="addToChecklist('previousChecklist')"
+        [disabled]="isFormDisabled"
       >
         Add checklist item
       </button>
       <h3>Today</h3>
-      <div
-        class="row-item"
-        *ngFor="let control of currentChecklist.controls; index as i"
-      >
+      <div class="row-item" *ngFor="let control of currentChecklist.controls; index as i">
         <mat-form-field appearance="outline">
           <mat-label>Task</mat-label>
           <input
@@ -60,12 +54,11 @@
             mat-icon-button
             aria-label="Delete item"
             (click)="removeFromChecklist('currentChecklist', i)"
+            [disabled]="isFormDisabled"
           >
             <mat-icon class="material-icons-outlined">delete</mat-icon>
           </button>
-          <mat-error *ngIf="control.hasError('required')">
-            This is required.
-          </mat-error>
+          <mat-error *ngIf="control.hasError('required')"> This is required. </mat-error>
         </mat-form-field>
       </div>
       <button
@@ -73,14 +66,12 @@
         class="add"
         mat-stroked-button
         (click)="addToChecklist('currentChecklist')"
+        [disabled]="isFormDisabled"
       >
         Add checklist item
       </button>
       <h3>Blockers</h3>
-      <div
-        class="row-item"
-        *ngFor="let control of blockers.controls; index as i"
-      >
+      <div class="row-item" *ngFor="let control of blockers.controls; index as i">
         <mat-form-field appearance="outline">
           <mat-label>Blocker</mat-label>
           <input
@@ -96,22 +87,16 @@
             mat-icon-button
             aria-label="Delete blocker"
             (click)="removeFromChecklist('blockers', i)"
+            [disabled]="isFormDisabled"
           >
             <mat-icon class="material-icons-outlined">delete</mat-icon>
           </button>
         </mat-form-field>
       </div>
-      <button
-        type="button"
-        class="add"
-        mat-stroked-button
-        (click)="addToChecklist('blockers')"
-      >
+      <button type="button" class="add" mat-stroked-button (click)="addToChecklist('blockers')" [disabled]="isFormDisabled">
         Add blocker
       </button>
-      <button type="button" mat-raised-button (click)="resetForm()">
-        Reset form
-      </button>
+      <button type="button" mat-raised-button (click)="resetForm()" [disabled]="isFormDisabled">Reset form</button>
     </form>
     <app-preview
       [previousChecklist]="previousChecklist"
