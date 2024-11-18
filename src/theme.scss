@@ -1,19 +1,5 @@
 @use "@angular/material" as mat;
-@import "~@angular/material/prebuilt-themes/magenta-violet.css";
 
-@include mat.core();
-
-// Define a dark theme
-$dark-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: dark,
-      primary: mat.$orange-palette,
-    ),
-  )
-);
-
-// Define a light theme
 $light-theme: mat.define-theme(
   (
     color: (
@@ -23,14 +9,33 @@ $light-theme: mat.define-theme(
   )
 );
 
-body {
-  &.dark {
-    @include mat.core-theme($dark-theme);
-    @include mat.button-theme($dark-theme);
-  }
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$orange-palette,
+    ),
+  )
+);
 
-  &.light {
-    @include mat.core-color($light-theme);
-    @include mat.button-color($light-theme);
+@include mat.core();
+
+@mixin theme($theme) {
+  app-header {
+    color: mat.get-theme-color($theme, primary);
+
+    mat-toolbar {
+      background: mat.get-theme-color($theme, primary-container);
+    }
   }
+}
+
+:root {
+  @include mat.all-component-themes($light-theme);
+  @include theme($light-theme);
+}
+
+body.dark {
+  @include mat.all-component-themes($dark-theme);
+  @include theme($dark-theme);
 }
