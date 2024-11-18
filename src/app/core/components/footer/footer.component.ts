@@ -13,13 +13,11 @@ export class FooterComponent implements OnInit {
   repositoryUrl = packageJson.repository.url;
   newIssueUrl;
 
-  constructor() {}
-
   ngOnInit(): void {
-    // this.newIssueUrl = newGithubIssueUrl({
-    //   user: 'dickwyn',
-    //   repo,
-    //   body: '[Enter feedback here]',
-    // });
+    this.newIssueUrl = newGithubIssueUrl({
+      user: 'dickwyn',
+      repo: packageJson.name,
+      body: '[Enter feedback here]',
+    });
   }
 }
