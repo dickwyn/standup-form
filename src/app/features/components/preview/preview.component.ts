@@ -6,7 +6,7 @@ import {
   EventEmitter,
   AfterViewInit,
 } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import ClipboardJS from 'clipboard';
 import { AppSettingsService } from '../../../core/services/settings.service';
@@ -28,9 +28,9 @@ const weekday = [
   styleUrls: ['./preview.component.scss'],
 })
 export class PreviewComponent implements OnInit, AfterViewInit {
-  @Input() previousChecklist: FormArray;
-  @Input() currentChecklist: FormArray;
-  @Input() blockers: FormArray;
+  @Input() previousChecklist: UntypedFormArray;
+  @Input() currentChecklist: UntypedFormArray;
+  @Input() blockers: UntypedFormArray;
   @Output() onFormSaved: EventEmitter<any> = new EventEmitter<any>();
   @Output() weekdayRegistered: EventEmitter<any> = new EventEmitter<any>();
   date: string;
@@ -79,12 +79,18 @@ export class PreviewComponent implements OnInit, AfterViewInit {
       if (expiration > todayDateObj.getTime()) {
         if (currentChecklist !== undefined) {
           currentChecklist.forEach((item, index) => {
-            this.currentChecklist.setControl(index, new FormControl(item));
+            this.currentChecklist.setControl(
+              index,
+              new UntypedFormControl(item)
+            );
           });
         }
         if (previousChecklist !== undefined) {
           previousChecklist.forEach((item, index) => {
-            this.previousChecklist.setControl(index, new FormControl(item));
+            this.previousChecklist.setControl(
+              index,
+              new UntypedFormControl(item)
+            );
           });
         }
       } else {
@@ -104,7 +110,10 @@ export class PreviewComponent implements OnInit, AfterViewInit {
         }
         if (currentChecklist !== undefined) {
           currentChecklist.forEach((item, index) => {
-            this.previousChecklist.setControl(index, new FormControl(item));
+            this.previousChecklist.setControl(
+              index,
+              new UntypedFormControl(item)
+            );
           });
         }
       }
@@ -154,7 +163,7 @@ export class PreviewComponent implements OnInit, AfterViewInit {
     });
   }
 
-  isFormArrayEmpty(formArray: FormArray): boolean {
+  isFormArrayEmpty(formArray: UntypedFormArray): boolean {
     return (
       formArray.value.length === 0 ||
       (formArray.value.length > 0 && !formArray.value.some((item) => item))

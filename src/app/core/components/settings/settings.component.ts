@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { AppSettingsService } from '../../services/settings.service';
 import { LOCAL_STORAGE_KEY } from '../../constants';
 import { UserSettings } from '../../models/settings';
@@ -10,10 +10,10 @@ import { UserSettings } from '../../models/settings';
   styleUrls: ['./settings.component.scss'],
 })
 export class AppSettingsComponent implements OnInit {
-  customizationsForm: FormGroup;
+  customizationsForm: UntypedFormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private appSettingsService: AppSettingsService
   ) {}
 
@@ -45,13 +45,13 @@ export class AppSettingsComponent implements OnInit {
     this.appSettingsService.onUpdated();
   }
 
-  get hideEmptyLists(): FormControl {
-    return this.customizationsForm.get('hideEmptyLists') as FormControl;
+  get hideEmptyLists(): UntypedFormControl {
+    return this.customizationsForm.get('hideEmptyLists') as UntypedFormControl;
   }
 
-  get displayDayOnPreviousChecklist(): FormControl {
+  get displayDayOnPreviousChecklist(): UntypedFormControl {
     return this.customizationsForm.get(
       'displayDayOnPreviousChecklist'
-    ) as FormControl;
+    ) as UntypedFormControl;
   }
 }

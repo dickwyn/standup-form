@@ -5,7 +5,12 @@ import {
   AfterViewInit,
   HostListener,
 } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LOCAL_STORAGE_KEY } from './core/constants';
 
@@ -17,7 +22,7 @@ declare var gtag;
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  standupForm: FormGroup;
+  standupForm: UntypedFormGroup;
   previousChecklistTitle: string;
   @HostListener('window:beforeunload', ['$event'])
   doSomething($event) {
@@ -27,7 +32,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public snackbar: MatSnackBar,
     private cdr: ChangeDetectorRef
   ) {
@@ -47,24 +52,24 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   get currentChecklist() {
-    return this.standupForm.get('currentChecklist') as FormArray;
+    return this.standupForm.get('currentChecklist') as UntypedFormArray;
   }
 
   get previousChecklist() {
-    return this.standupForm.get('previousChecklist') as FormArray;
+    return this.standupForm.get('previousChecklist') as UntypedFormArray;
   }
 
   get blockers() {
-    return this.standupForm.get('blockers') as FormArray;
+    return this.standupForm.get('blockers') as UntypedFormArray;
   }
 
   addToChecklist(controlName: string) {
-    const formControl = this.standupForm.get(controlName) as FormArray;
-    formControl.push(new FormControl(''));
+    const formControl = this.standupForm.get(controlName) as UntypedFormArray;
+    formControl.push(new UntypedFormControl(''));
   }
 
   removeFromChecklist(controlName: string, index: number) {
-    const formControl = this.standupForm.get(controlName) as FormArray;
+    const formControl = this.standupForm.get(controlName) as UntypedFormArray;
     formControl.removeAt(index);
   }
 

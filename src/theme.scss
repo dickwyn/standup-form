@@ -1,36 +1,36 @@
-@import "~@angular/material/theming";
-// Plus imports for other components in your app.
+@use "@angular/material" as mat;
+@import "~@angular/material/prebuilt-themes/magenta-violet.css";
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core(mat-typography-config($font-family: "Roboto Slab"));
+@include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
+// Define a dark theme
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$orange-palette,
+    ),
+  )
+);
 
-// light theme colors
-$primary: mat-palette($mat-red);
-$accent: mat-palette($mat-blue, A200, A100, A400);
+// Define a light theme
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$orange-palette,
+    ),
+  )
+);
 
-// dark theme colors
-$dark-theme-warn: mat-palette($mat-deep-orange);
+body {
+  &.dark {
+    @include mat.core-theme($dark-theme);
+    @include mat.button-theme($dark-theme);
+  }
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-// themes will be switched based on class names, angular will switch classes which will trigger the theme change
-.light {
-  @include angular-material-theme(mat-light-theme($primary, $accent));
-}
-
-.dark {
-  @include angular-material-theme(
-    mat-dark-theme($primary, $accent, $dark-theme-warn)
-  );
-}
-
-a {
-  color: mat-color($accent);
+  &.light {
+    @include mat.core-color($light-theme);
+    @include mat.button-color($light-theme);
+  }
 }

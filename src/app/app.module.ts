@@ -22,6 +22,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { environment } from '../environments/environment';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { AppSettingsComponent } from './core/components/settings/settings.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,9 @@ import { AppSettingsComponent } from './core/components/settings/settings.compon
       enabled: environment.production,
     }),
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

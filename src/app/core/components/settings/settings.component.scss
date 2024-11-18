@@ -1,11 +1,3 @@
-::ng-deep .mat-dialog-content {
-  min-height: 9vh;
-
-  .mat-checkbox {
-    display: block;
-
-    .mat-checkbox-layout {
-      white-space: break-spaces;
-    }
-  }
+mat-dialog-content {
+  overflow-y: hidden;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import newGithubIssueUrl from 'new-github-issue-url';
-import { name, version, repository } from 'package.json';
+import packageJson from '../../../../../package.json';
 
 @Component({
   selector: 'app-footer',
@@ -8,17 +8,15 @@ import { name, version, repository } from 'package.json';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  version = version;
-  name = name;
-  repositoryUrl = repository.url;
+  version = packageJson.version;
+  name = packageJson.name;
+  repositoryUrl = packageJson.repository.url;
   newIssueUrl;
-
-  constructor() {}
 
   ngOnInit(): void {
     this.newIssueUrl = newGithubIssueUrl({
       user: 'dickwyn',
-      repo: name,
+      repo: packageJson.name,
       body: '[Enter feedback here]',
     });
   }
