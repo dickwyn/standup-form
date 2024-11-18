@@ -6,15 +6,14 @@ import {
   HostListener,
 } from '@angular/core';
 import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  UntypedFormArray,
-  UntypedFormControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LOCAL_STORAGE_KEY } from './core/constants';
-
-declare var gtag;
 
 @Component({
   selector: 'app-root',
@@ -22,8 +21,9 @@ declare var gtag;
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  standupForm: UntypedFormGroup;
+  standupForm: FormGroup;
   previousChecklistTitle: string;
+
   @HostListener('window:beforeunload', ['$event'])
   doSomething($event) {
     if (this.standupForm.dirty) {
@@ -32,17 +32,19 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     public snackbar: MatSnackBar,
     private cdr: ChangeDetectorRef
-  ) {
-    gtag('config', 'UA-64177134-1');
-  }
+  ) {}
 
   ngOnInit() {
     this.standupForm = this.fb.group({
-      previousChecklist: this.fb.array(['']),
-      currentChecklist: this.fb.array(['']),
+      previousChecklist: this.fb.array([
+        this.fb.control('', [Validators.required, Validators.minLength(20)]),
+      ]),
+      currentChecklist: this.fb.array([
+        this.fb.control('', Validators.required),
+      ]),
       blockers: this.fb.array(['']),
     });
   }
@@ -52,24 +54,29 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   get currentChecklist() {
-    return this.standupForm.get('currentChecklist') as UntypedFormArray;
+    return this.standupForm.get('currentChecklist') as FormArray;
   }
 
   get previousChecklist() {
-    return this.standupForm.get('previousChecklist') as UntypedFormArray;
+    return this.standupForm.get('previousChecklist') as FormArray;
   }
 
   get blockers() {
-    return this.standupForm.get('blockers') as UntypedFormArray;
+    return this.standupForm.get('blockers') as FormArray;
   }
 
   addToChecklist(controlName: string) {
-    const formControl = this.standupForm.get(controlName) as UntypedFormArray;
-    formControl.push(new UntypedFormControl(''));
+    const formControl = this.standupForm.get(controlName) as FormArray;
+    formControl.push(
+      new FormControl(
+        '',
+        controlName === 'blockers' ? undefined : [Validators.required]
+      )
+    );
   }
 
   removeFromChecklist(controlName: string, index: number) {
-    const formControl = this.standupForm.get(controlName) as UntypedFormArray;
+    const formControl = this.standupForm.get(controlName) as FormArray;
     formControl.removeAt(index);
   }
 
@@ -77,7 +84,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.previousChecklistTitle = title;
   }
 
-  handleKeyTab(event, controlName: string, inputIndex: number) {
+  handleKeyTab(_event, controlName: string, inputIndex: number) {
     if (this[controlName].controls.length - 1 === inputIndex) {
       this.addToChecklist(controlName);
       this.cdr.detectChanges();
@@ -89,11 +96,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.standupForm.markAsPristine();
   }
 
-  resetForm(): void {
-    const fieldsToReset = ['previousChecklist', 'currentChecklist', 'blockers'];
-
+  resetForm() {
     this.standupForm.reset();
-    fieldsToReset.forEach((field) => {
+    ['previousChecklist', 'currentChecklist', 'blockers'].forEach((field) => {
       this[field].clear();
       this.addToChecklist(field);
     });

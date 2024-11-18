@@ -27,6 +27,9 @@
           >
             <mat-icon class="material-icons-outlined">delete</mat-icon>
           </button>
+          <mat-error *ngIf="control.hasError('required')">
+            This is required.
+          </mat-error>
         </mat-form-field>
       </div>
       <button
@@ -60,6 +63,9 @@
           >
             <mat-icon class="material-icons-outlined">delete</mat-icon>
           </button>
+          <mat-error *ngIf="control.hasError('required')">
+            This is required.
+          </mat-error>
         </mat-form-field>
       </div>
       <button
