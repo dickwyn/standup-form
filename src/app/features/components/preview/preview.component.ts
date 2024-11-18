@@ -31,10 +31,11 @@ export class PreviewComponent implements OnInit, AfterViewInit {
   @Input() previousChecklist: UntypedFormArray;
   @Input() currentChecklist: UntypedFormArray;
   @Input() blockers: UntypedFormArray;
-  @Output() onFormSaved: EventEmitter<any> = new EventEmitter<any>();
-  @Output() weekdayRegistered: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onFormSaved: EventEmitter<void> = new EventEmitter<void>();
+  @Output() weekdayRegistered: EventEmitter<string> =
+    new EventEmitter<string>();
   date: string;
-  clipboardjs: any = new ClipboardJS('.copy-button');
+  clipboardjs = new ClipboardJS('.copy-button');
   previousChecklistTitle = 'Yesterday';
   userSettings;
   isBlockersEmpty: boolean;
