@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.standupForm = this.fb.group({
-      previousChecklist: this.fb.array([this.fb.control('', [Validators.required, Validators.minLength(20)])]),
+      previousChecklist: this.fb.array([this.fb.control('', [Validators.required])]),
       currentChecklist: this.fb.array([this.fb.control('', Validators.required)]),
       blockers: this.fb.array(['']),
     });
