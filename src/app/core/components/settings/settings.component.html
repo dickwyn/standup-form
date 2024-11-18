@@ -1,10 +1,6 @@
-<h1 mat-dialog-title>
-  Settings (Beta)
-</h1>
-<p>
-  Experimental settings for customizing the application
-</p>
-<div mat-dialog-content>
+<h1 mat-dialog-title>Settings (Beta)</h1>
+<mat-dialog-content>
+  <p>Experimental settings for customizing the application</p>
   <form [formGroup]="customizationsForm">
     <mat-checkbox formControlName="hideEmptyLists"
       >Hide empty list(s)</mat-checkbox
@@ -14,7 +10,7 @@
       Thursday)</mat-checkbox
     >
   </form>
-</div>
+</mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
   <button
