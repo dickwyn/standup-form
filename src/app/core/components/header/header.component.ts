@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppSettingsComponent } from '../settings/settings.component';
 import { LOCAL_STORAGE_KEY } from '../../constants';
+import packageJson from '../../../../../package.json';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { LOCAL_STORAGE_KEY } from '../../constants';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  appName = 'standup-form';
+  appName = packageJson.name;
   body: DOMTokenList = document.getElementsByTagName('body')[0].classList;
   currentTheme = 'auto';
   themes = {

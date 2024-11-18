@@ -1,7 +1,7 @@
 {
   "name": "standup-form",
   "description": "Simple standup form",
-  "version": "0.6.3",
+  "version": "2.0.0",
   "author": "Dick Wyn Yong <dickwyn@outlook.com>",
   "scripts": {
     "ng": "ng",
@@ -61,5 +61,5 @@
   "bugs": {
     "url": "https://github.com/dickwyn/standup-form/issues"
   },
-  "homepage": "https://standup-form.dickwyn.xyz/"
+  "homepage": "https://standup-form.dickwyn.xyz"
 }
