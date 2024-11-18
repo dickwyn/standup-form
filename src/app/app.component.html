@@ -20,7 +20,6 @@
           />
           <button
             type="button"
-            mat-button
             matSuffix
             mat-icon-button
             aria-label="Delete item"
@@ -41,9 +40,7 @@
       >
         Add checklist item
       </button>
-      <h3>
-        Today
-      </h3>
+      <h3>Today</h3>
       <div
         class="row-item"
         *ngFor="let control of currentChecklist.controls; index as i"
@@ -59,7 +56,6 @@
           />
           <button
             type="button"
-            mat-button
             matSuffix
             mat-icon-button
             aria-label="Delete item"
@@ -80,9 +76,7 @@
       >
         Add checklist item
       </button>
-      <h3>
-        Blockers
-      </h3>
+      <h3>Blockers</h3>
       <div
         class="row-item"
         *ngFor="let control of blockers.controls; index as i"
@@ -98,7 +92,6 @@
           />
           <button
             type="button"
-            mat-button
             matSuffix
             mat-icon-button
             aria-label="Delete blocker"
