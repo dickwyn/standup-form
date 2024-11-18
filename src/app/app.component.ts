@@ -1,17 +1,5 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  AfterViewInit,
-  HostListener,
-} from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit, ChangeDetectorRef, AfterViewInit, HostListener } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LOCAL_STORAGE_KEY } from './core/constants';
 
@@ -31,20 +19,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(
-    private fb: FormBuilder,
-    public snackbar: MatSnackBar,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private fb: FormBuilder, public snackbar: MatSnackBar, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.standupForm = this.fb.group({
-      previousChecklist: this.fb.array([
-        this.fb.control('', [Validators.required, Validators.minLength(20)]),
-      ]),
-      currentChecklist: this.fb.array([
-        this.fb.control('', Validators.required),
-      ]),
+      previousChecklist: this.fb.array([this.fb.control('', [Validators.required, Validators.minLength(20)])]),
+      currentChecklist: this.fb.array([this.fb.control('', Validators.required)]),
       blockers: this.fb.array(['']),
     });
   }
@@ -67,12 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   addToChecklist(controlName: string) {
     const formControl = this.standupForm.get(controlName) as FormArray;
-    formControl.push(
-      new FormControl(
-        '',
-        controlName === 'blockers' ? undefined : [Validators.required]
-      )
-    );
+    formControl.push(new FormControl('', controlName === 'blockers' ? undefined : [Validators.required]));
   }
 
   removeFromChecklist(controlName: string, index: number) {
